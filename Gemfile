@@ -8,6 +8,7 @@ group :development do
   gem 'sqlite3'
 end
 
+# herokuにデプロイするのでPostgreSQLを使う
 group :production do
   gem 'pg'
 end
