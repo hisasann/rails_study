@@ -12,6 +12,15 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+# http://d.hatena.ne.jp/ria10/20130411/1365695467
+# config.ignore_hidden_elements = falseしないと、titleタグの評価がされないよう
+Capybara.configure do |config|
+  config.match = :one
+  config.exact_options = false
+  config.ignore_hidden_elements = false
+  config.visible_text_only = true
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -39,4 +48,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # CapybaraのDSLを読み込む
+  config.include Capybara::DSL
 end
